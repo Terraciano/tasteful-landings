@@ -20,6 +20,7 @@ Do not execute both workflows.
 - Stop research when uncertainty is resolved.
 - Load design, copy, and SEO skills only in the phase where they are needed.
 - Prefer the smallest architecture/change set that satisfies the active contract.
+- Deployment is human-owned. Never deploy, open Cloudflare, run Wrangler, authenticate, configure DNS, or inspect a production deployment unless the user explicitly asks for that action in the current task.
 
 ## Source locations
 
