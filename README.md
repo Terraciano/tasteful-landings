@@ -43,6 +43,10 @@ There are two flows.
 
 ```text
 PUBLIC INFORMATION
+    ↓
+FIRST-PARTY BRAND EXTRACTION
+    ↓
+BRAND_BASELINE.md
     +
 PRINCIPLES
     +
@@ -57,7 +61,9 @@ DESIGN_DIRECTION.md
     ↓
 DESIGN SKILL
     ↓
-LEAN IMPLEMENTATION
+VITE + VANILLA TS/CSS BY DEFAULT
+    ↓
+LEAN STATIC IMPLEMENTATION
     ↓
 COPY SKILL
     ↓
@@ -108,13 +114,18 @@ The harness is optimized around current Codex behavior:
 - Terra is reserved for visual analysis and final review
 - concurrency is capped at 3
 - generated assets default to zero
+- first-party brand CSS/tokens are inspected before inventing visual direction
+- Vite + vanilla TypeScript/CSS is the default frontend stack
+- Astro is the static-complexity escape hatch
+- Next.js is an exception, not the baseline
+- Cloudflare Pages is the default deployment target
 
 Skills are loaded by phase instead of all at once.
 
 Generated repos should be technically boring and visually distinctive.
 
-The default single-page landing should not need:
-- a UI framework
+The default single-page landing should usually be static Vite output and should not need:
+- React or another UI framework
 - a state library
 - a CMS
 - a database
