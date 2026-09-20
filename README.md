@@ -12,9 +12,22 @@ This repo stores:
 
 It does **not** store generated sites themselves.
 
-## Current industry pack
+## Current industry packs
 
 - Private aviation
+- Wineries / wine estates
+- Olive estates / premium olive oil
+- Luxury real estate
+- Yachting / yacht brokerage
+- Luxury construction / architecture
+- Collector / exotic automotive
+- Private medical / cosmetic / longevity
+- Boutique hospitality / villas / resorts
+- Wealth management / family office
+- High-end interiors
+- High-end legal / advisory
+- Fine jewelry / watches
+- Luxury home services
 
 ## Agent entrypoint
 
