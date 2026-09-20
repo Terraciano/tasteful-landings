@@ -1,6 +1,6 @@
-# Tasteful Landings
+# Tasteful Sites (repo: tasteful-landings)
 
-A control repository for generating deploy-ready landing-page repositories for high-ticket, specialist and luxury industries.
+A control repository for generating deploy-ready institutional/business websites for high-ticket, specialist and luxury industries.
 
 This repo stores:
 - global design principles
@@ -11,7 +11,8 @@ This repo stores:
 - project-local Codex multi-agent configuration
 - lazy-loaded workflow skills
 - explicit zero-by-default generated-asset policy
-- the production contract every generated landing must satisfy
+- site strategy that distinguishes institutional sites from campaign landings
+- the production contract every generated site must satisfy
 
 It does **not** store generated sites themselves.
 
@@ -36,7 +37,7 @@ It does **not** store generated sites themselves.
 
 Read `AGENTS.md`.
 
-There are two flows.
+There are two lifecycle flows. Site type is resolved separately.
 
 ### First-contact / demo generation
 
@@ -44,9 +45,13 @@ There are two flows.
 ```text
 PUBLIC INFORMATION
     ↓
-FIRST-PARTY BRAND EXTRACTION
+SITE STRATEGY
+institutional (default) | campaign
+single-page | multi-page
     ↓
-BRAND_BASELINE.md
+FIRST-PARTY BRAND + COPY EXTRACTION
+    ↓
+BRAND_BASELINE.md + COPY_BASELINE.md
     +
 PRINCIPLES
     +
@@ -125,7 +130,7 @@ Skills are loaded by phase instead of all at once.
 
 Generated repos should be technically boring and visually distinctive.
 
-The default single-page landing should usually be static Vite output and should not need:
+The default institutional site should usually be static Vite output and should not need:
 - React or another UI framework
 - a state library
 - a CMS
@@ -140,9 +145,9 @@ See `.agents/EFFICIENCY_HARNESS.md`.
 
 Example:
 
-> Generate a fictional private-aircraft brokerage landing named Northstar Aviation. Target aircraft owners and buyers in South Florida. Primary CTA: Request aircraft details. Create it as a separate deploy-ready repository.
+> Generate a first-contact institutional site for a private-aircraft brokerage named Northstar Aviation. Preserve specialist credibility and company narrative; choose single vs multi-page from the content. Create a build-ready local repository.
 
-The agent should research the current category before choosing a design direction.
+The agent should resolve institutional vs campaign and single vs multi-page before choosing information architecture or copy.
 
 ## Repository map
 
