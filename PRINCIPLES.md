@@ -2,7 +2,9 @@
 
 ## Objective
 
-Create premium websites for businesses selling expensive products or services.
+Create premium institutional/business websites by default for businesses selling expensive products or services.
+
+A campaign landing page is a distinct project type and should not be assumed from the word "landing".
 
 The websites should feel credible, restrained, specific and intentional.
 
@@ -68,6 +70,20 @@ Avoid generic luxury language such as:
 - redefine
 - exceptional experiences
 - where luxury meets innovation
+
+## Narrative preservation
+
+Existing copy is evidence of brand intention.
+
+When a real business has invested in telling its story, explaining its craft, documenting its process, describing its place, or establishing a particular vocabulary, preserve those narrative jobs in substance.
+
+Modernization should improve information architecture and hierarchy, not automatically compress everything into:
+- value proposition
+- benefits
+- proof
+- CTA
+
+For institutional sites, some sections exist to build identity, context, memory, culture, or desire rather than directly close a conversion.
 
 ## Identity preservation
 
