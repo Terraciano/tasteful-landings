@@ -223,9 +223,26 @@ For production, add a Cloudflare-compatible provider or endpoint only when reque
 
 Document environment variables and never commit credentials.
 
-## 13. Deployment
+## 13. Deployment handoff
 
-Default deployment target: **Cloudflare Pages**.
+Default deployment target: **Cloudflare Pages**, but deployment itself is OUT OF SCOPE for the harness.
+
+The agent prepares the repository for manual human deployment.
+
+Do not:
+- open the Cloudflare dashboard
+- use browser automation for deployment
+- run `wrangler pages deploy`
+- run any Cloudflare deploy command
+- authenticate to Cloudflare
+- create/configure a Pages project
+- modify DNS
+- wait for or inspect a production deployment
+- spend tokens validating a live URL
+
+unless the user explicitly requests deployment or production verification in the current task.
+
+
 
 For Vite:
 - build command: `bun run build`
@@ -239,9 +256,11 @@ The generated README must document:
 - domain/DNS notes
 - asset/license notes
 
-If runtime/server behavior becomes necessary, evaluate Cloudflare Workers instead of introducing a non-Cloudflare hosting assumption.
+If runtime/server behavior becomes necessary, document the Cloudflare Workers requirement for the human operator instead of deploying it.
 
 Do not target Vercel by default.
+
+The normal completion point is: repository builds successfully and README contains the manual Cloudflare settings.
 
 ## 14. CI
 
@@ -307,7 +326,8 @@ Add tests only for meaningful behavior.
 
 ### Engineering
 - [ ] framework choice is minimal and justified
-- [ ] Cloudflare deployment documented
+- [ ] manual Cloudflare deployment settings documented
+- [ ] no deployment action was performed unless explicitly requested
 - [ ] `bun install --frozen-lockfile`
 - [ ] typecheck passes
 - [ ] build passes
@@ -323,5 +343,5 @@ Report:
 - research summary
 - what is factual vs inferred
 - temporary assets
-- Cloudflare deployment requirements
+- manual Cloudflare deployment settings
 - any remaining manual work
