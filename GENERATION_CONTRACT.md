@@ -29,6 +29,10 @@ Before implementation, follow:
 
 Human-pinned references are optional.
 
+Use the `generate-landing` skill as the orchestration entrypoint. Do not preload all supporting skills.
+
+Asset generation is not a research or implementation requirement. Default generated-asset budget is zero; follow the `landing-assets` skill.
+
 The generated repository must contain:
 
 ```text
@@ -62,6 +66,7 @@ Minimum structure:
 ├── components/
 ├── public/
 ├── research/
+│   └── ASSET_MANIFEST.md   # only when temporary/external assets are used
 ├── .github/workflows/ci.yml
 ├── .gitignore
 ├── README.md
@@ -231,6 +236,11 @@ Before declaring the generated repository ready:
 - [ ] DESIGN_DIRECTION.md exists
 - [ ] research stop condition was reached
 - [ ] references have distinct jobs
+
+### Assets
+- [ ] no unnecessary generated assets
+- [ ] any temporary/external demo assets are documented
+- [ ] production licensing/replacement needs are explicit
 
 ### Design
 - [ ] industry brief is visibly reflected
