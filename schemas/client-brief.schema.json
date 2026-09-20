@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tasteful-landings.local/schemas/client-brief.schema.json",
+  "title": "Tasteful Landings Client Brief",
+  "type": "object",
+  "required": ["schemaVersion", "project", "evidence", "refinement"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "project": {
+      "type": "object",
+      "required": ["demoRepository"],
+      "properties": {
+        "brandName": { "type": ["string", "boolean"] },
+        "demoRepository": { "type": "string", "minLength": 1 },
+        "demoUrl": { "type": ["string", "boolean"] },
+        "realBusiness": { "type": ["string", "boolean"] },
+        "industry": { "type": ["string", "boolean"] },
+        "subcategory": { "type": ["string", "boolean"] },
+        "geography": { "type": ["string", "boolean"] }
+      },
+      "additionalProperties": true
+    },
+    "business": { "type": "object", "additionalProperties": true },
+    "audience": { "type": "object", "additionalProperties": true },
+    "brand": { "type": "object", "additionalProperties": true },
+    "trust": { "type": "object", "additionalProperties": true },
+    "website": { "type": "object", "additionalProperties": true },
+    "content": { "type": "object", "additionalProperties": true },
+    "operations": { "type": "object", "additionalProperties": true },
+    "constraints": { "type": "object", "additionalProperties": true },
+    "evidence": {
+      "type": "object",
+      "required": ["confirmedFacts", "inferences", "unknowns"],
+      "properties": {
+        "confirmedFacts": { "type": "array", "items": { "type": "string" } },
+        "inferences": { "type": "array", "items": { "type": "string" } },
+        "unknowns": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": false
+    },
+    "refinement": {
+      "type": "object",
+      "required": ["mode"],
+      "properties": {
+        "mode": { "const": "refine-existing-demo" },
+        "instruction": { "type": "string" }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}
