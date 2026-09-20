@@ -1,6 +1,6 @@
 # Discovery Input Contract
 
-The default discovery source is `client-brief.json` exported by the Discovery Console.
+The default discovery source is `client-brief.json` exported by `Terraciano/discovery-console`.
 
 Current schema version: `1`.
 
