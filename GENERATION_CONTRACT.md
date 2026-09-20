@@ -4,7 +4,7 @@ This document defines **generate mode**: creating a landing when no existing dem
 
 The output is a NEW repository, not a subfolder of this repository.
 
-If a Discovery Console payload specifies `refinement.mode = "refine-existing-demo"`, this contract is not the orchestration entrypoint. Use `REFINEMENT_CONTRACT.md` and refine the existing repository instead.
+If a Discovery Console payload specifies `refinement.mode = "refine-existing-demo"`, use `REFINEMENT_CONTRACT.md` instead.
 
 ## 1. Required inputs
 
@@ -17,26 +17,25 @@ At minimum:
 - primary conversion action
 - target geography if locally relevant
 
-Preferred input is a completed discovery/client brief.
-
-If information is missing, infer only low-risk creative details. Never invent claims presented as factual proof.
+If information is missing, infer only low-risk creative details. Never invent factual proof.
 
 ## 2. Mandatory research gate
 
-Before implementation, follow:
-- `RESEARCH_PROTOCOL.md`
-- the selected industry's `RESEARCH_PLAYBOOK.md`
+Use `generate-landing` as the orchestration entrypoint.
 
-Human-pinned references are optional.
+Before implementation:
+- inspect first-party identity with `extract-brand-baseline` when an existing site is available
+- follow `RESEARCH_PROTOCOL.md`
+- follow the selected industry `RESEARCH_PLAYBOOK.md`
+- follow `landing-assets`
 
-Use the `generate-landing` skill as the orchestration entrypoint. Do not preload all supporting skills.
+Default generated-asset budget is zero.
 
-Asset generation is not a research or implementation requirement. Default generated-asset budget is zero; follow the `landing-assets` skill.
-
-The generated repository must contain:
+Required research files:
 
 ```text
 research/
+├── BRAND_BASELINE.md   # when a first-party site exists
 ├── MARKET.md
 ├── COMPETITORS.md
 ├── REFERENCES.md
@@ -45,265 +44,284 @@ research/
 
 Implementation may begin only after `DESIGN_DIRECTION.md` exists.
 
-## 3. Output repository
+## 3. Framework selection
 
-Default repository naming:
+Choose the smallest stack that satisfies the brief.
 
-`landing-<brand-slug>`
+### Default: Vite + vanilla TypeScript
 
-The generated repository should remain technically small.
+Use for normal marketing sites and landing pages.
 
-Minimum structure:
+Baseline:
+- Vite
+- vanilla TypeScript
+- semantic HTML
+- CSS
+- Bun
+- static `dist/`
+- Cloudflare Pages
+
+React is not part of the default stack.
+
+### Astro
+
+Use only when the site materially benefits from:
+- multiple static routes
+- reusable layouts
+- content collections
+- repeated structured content
+- static-site composition that would otherwise become awkward in plain HTML
+
+Astro must still deploy as static output unless runtime behavior is explicitly required.
+
+### Next.js / full app framework
+
+Use only when there is a concrete application/runtime requirement such as:
+- authenticated application behavior
+- server-side runtime logic
+- complex dynamic routing/data requirements
+- server actions/API behavior that genuinely belongs in this project
+
+SEO alone is not justification for Next.js.
+
+Framework familiarity is not justification.
+
+Document any escalation beyond vanilla Vite in the README.
+
+## 4. Default Vite repository
+
+Typical single-page structure:
 
 ```text
 .
-├── app/
-│   ├── layout.tsx
-│   ├── page.tsx
-│   ├── globals.css
-│   ├── robots.ts
-│   └── sitemap.ts
-├── components/
+├── index.html
+├── src/
+│   ├── main.ts
+│   └── styles.css
 ├── public/
+│   ├── robots.txt
+│   └── sitemap.xml
 ├── research/
-│   └── ASSET_MANIFEST.md   # only when temporary/external assets are used
 ├── .github/workflows/ci.yml
 ├── .gitignore
 ├── README.md
 ├── bun.lock
-├── eslint.config.*
-├── next.config.*
 ├── package.json
-├── tsconfig.json
-└── AGENTS.md
+└── tsconfig.json
 ```
 
-Add routes and files only when they serve the brief.
+Add files only when the brief requires them.
 
-## 4. Technical baseline
+For multiple pages, use additional static HTML entries or escalate to Astro when that becomes materially clearer.
 
-Default:
-- current stable Next.js App Router
-- current stable React supported by Next.js
-- TypeScript strict mode
-- Tailwind CSS v4
-- Bun
-- Server Components unless interactivity requires a Client Component
-- `next/font` or legally self-hosted font files
-- optimized `next/image` usage where appropriate
+## 5. Brand fidelity gate
 
-Follow `.agents/EFFICIENCY_HARNESS.md`.
+If a first-party site exists, `BRAND_BASELINE.md` is required.
 
-Avoid introducing dependencies when platform primitives are sufficient.
+Before selecting palette/typography/UI accents, verify:
+- recurring CSS color values/tokens
+- font families and weights
+- logo treatment
+- navigation/button treatment
+- recurring shape/border/radius cues
+- photography/media language
 
-## 5. Visual system
+`DESIGN_DIRECTION.md` must state:
+- what existing identity is preserved
+- what is intentionally reinterpreted
+- justification for any newly introduced accent/font/system
 
-Before building sections, define in `research/DESIGN_DIRECTION.md`:
+Never invent a new brand color merely for visual novelty.
 
-- page background
+## 6. Visual system
+
+Before implementation, define in `DESIGN_DIRECTION.md`:
+- background/surfaces
 - primary and muted text
-- accent
+- accent(s)
 - border treatment
 - typography direction
 - type scale
 - spacing rhythm
 - content width
 - shape/radius rule
-- image treatment
+- media treatment
 - composition rules
 - motion rule
 - density rule
 
-These decisions must trace back to:
-- client identity
-- industry brief
-- current research
-- selected references
-
-Do not create a universal "luxury" style.
-
-## 6. Copy requirements
-
-Run the copywriting skill in the copy phase.
-
-The page must have:
-- a specific H1
-- a supporting value proposition
-- one primary conversion action
-- industry-appropriate CTA language
-- objection handling where useful
-- no unsupported superlatives
-- no filler copy
-- no fake proof
-
-For portfolio concepts, fictional copy should sound plausible without fabricating external validation.
+Decisions must trace to brand baseline, client identity, industry brief, and current research.
 
 ## 7. SEO baseline
 
-Run the SEO audit skill as a release gate, not during initial implementation.
+Static HTML is the preferred SEO delivery model for these sites.
 
 Every release-ready site must include:
-- unique title
+- unique `<title>`
 - useful meta description
-- canonical strategy
+- canonical URL strategy
 - one clear H1
 - semantic heading hierarchy
-- descriptive image alt text
-- crawlable internal links
-- `robots.ts`
-- `sitemap.ts`
+- descriptive alt text
+- crawlable links
+- `robots.txt`
+- `sitemap.xml`
 - Open Graph metadata
-- Twitter/X metadata where applicable
-- favicon/app icons if assets exist
-- structured data only when the underlying facts actually exist
+- social metadata where applicable
+- structured data only when facts are real
 
-Local-business concepts should be structured so appropriate local schema can be added when real NAP data exists, but must not fabricate NAP values.
+Do not add a framework merely for metadata generation.
 
-## 8. Accessibility baseline
+## 8. Copy
+
+Run the copywriting skill only in the copy phase.
+
+Require:
+- specific H1
+- supporting value proposition
+- explicit primary CTA
+- industry-appropriate wording
+- no unsupported superlatives
+- no filler
+- no fake proof
+
+## 9. Assets
+
+Default generated-asset budget: zero.
+
+- prefer client/first-party/existing assets
+- document temporary assets in `research/ASSET_MANIFEST.md`
+- use intentional image-light composition or asset slots rather than generating decorative filler
+- never invent a synthetic logo for a real prospect
+
+## 10. Accessibility
 
 Required:
-- keyboard-usable navigation and controls
+- keyboard-usable controls
 - visible focus states
-- semantic interactive elements
+- semantic elements
 - sufficient contrast
-- reduced-motion handling for non-essential motion
-- accessible labels for forms and controls
-- no information conveyed only by color
-- no hover-only essential interaction
+- reduced-motion handling where relevant
+- labels for forms
+- no hover-only essential behavior
 
-## 9. Performance baseline
+## 11. Performance
 
-Design for:
-- minimal client JavaScript
-- responsive image sizes
-- lazy loading below the fold
-- no autoplay heavyweight video on constrained mobile unless justified
-- stable layout with explicit media dimensions
+Prefer:
+- no framework runtime
+- minimal JS
+- responsive optimized images
+- lazy loading below fold
+- explicit media dimensions
 - no unnecessary third-party scripts
 
-Prefer visual restraint over effect-heavy performance debt.
+## 12. Forms
 
-## 10. Forms
+Demo forms may be UI-complete without pretending submissions persist.
 
-Concept repos should default to a UI-complete contact/inquiry form without pretending submissions are persisted.
+For production, add a Cloudflare-compatible provider or endpoint only when requested.
 
-If a real backend is requested:
-- isolate provider integration
-- document required environment variables
-- provide `.env.example`
-- never commit credentials
+Document environment variables and never commit credentials.
 
-## 11. Analytics
+## 13. Deployment
 
-Do not add trackers by default.
+Default deployment target: **Cloudflare Pages**.
 
-If analytics is requested, prefer a documented provider integration and keep it removable.
+For Vite:
+- build command: `bun run build`
+- output directory: `dist`
 
-## 12. CI
+The generated README must document:
+- local dev command
+- production build command
+- Cloudflare Pages build settings
+- required environment variables
+- domain/DNS notes
+- asset/license notes
 
-Generated repositories must contain a GitHub Actions workflow using Bun that runs at least:
+If runtime/server behavior becomes necessary, evaluate Cloudflare Workers instead of introducing a non-Cloudflare hosting assumption.
+
+Do not target Vercel by default.
+
+## 14. CI
+
+Default CI:
 
 ```bash
 bun install --frozen-lockfile
-bun run lint
 bun run typecheck
 bun run build
 ```
 
-Add tests only when there is meaningful behavior worth testing.
+Add lint only when a configured linter exists.
 
-## 13. Deployment
+Add tests only for meaningful behavior.
 
-Default deployment target: Vercel.
-
-README must contain:
-- local development command
-- production build command
-- required environment variables
-- deployment notes
-- asset/license notes if relevant
-
-A project requiring no environment variables should say so explicitly.
-
-## 14. Release checklist
-
-Before declaring the generated repository ready:
+## 15. Release checklist
 
 ### Research
+- [ ] BRAND_BASELINE.md exists when a first-party site exists
 - [ ] MARKET.md exists
 - [ ] COMPETITORS.md exists
 - [ ] REFERENCES.md exists
 - [ ] DESIGN_DIRECTION.md exists
-- [ ] research stop condition was reached
-- [ ] references have distinct jobs
+- [ ] research stop condition reached
+
+### Brand
+- [ ] first-party colors checked directly
+- [ ] first-party typography checked where discoverable
+- [ ] no invented conflicting accent colors
+- [ ] design direction documents preserve/reinterpret decisions
 
 ### Assets
 - [ ] no unnecessary generated assets
-- [ ] any temporary/external demo assets are documented
-- [ ] production licensing/replacement needs are explicit
+- [ ] temporary assets documented
+- [ ] production replacement/licensing needs explicit
 
-### Design
-- [ ] industry brief is visibly reflected
-- [ ] client's identity is preserved
-- [ ] no generic AI/SaaS composition
+### Design/content
+- [ ] niche/industry identity visible
+- [ ] H1 and CTA specific
+- [ ] no fake proof
+- [ ] no generic SaaS composition
 - [ ] no unjustified luxury cliché
-- [ ] typography hierarchy is consistent
-- [ ] shape system is consistent
-- [ ] image crop/art direction works at all breakpoints
-- [ ] motion has a purpose
-- [ ] reduced-motion behavior exists where needed
 
-### Content
-- [ ] H1 is specific
-- [ ] primary CTA is explicit
-- [ ] no lorem ipsum
-- [ ] no invented proof
-- [ ] no empty placeholder sections
-- [ ] tone matches the industry
-
-### Responsive
+### Responsive/accessibility
 - [ ] 320px
 - [ ] 375/390px
 - [ ] 768px
 - [ ] 1024px
 - [ ] 1440px+
-- [ ] navigation works without overflow
-- [ ] display type does not clip or wrap badly
-
-### Accessibility
-- [ ] keyboard navigation checked
-- [ ] focus states visible
+- [ ] keyboard/focus checked
 - [ ] contrast checked
-- [ ] form labels checked
 - [ ] alt text checked
 
 ### SEO
 - [ ] title
 - [ ] description
-- [ ] canonical strategy
-- [ ] H1/heading hierarchy
-- [ ] robots
-- [ ] sitemap
+- [ ] canonical
+- [ ] heading hierarchy
+- [ ] robots.txt
+- [ ] sitemap.xml
 - [ ] social metadata
-- [ ] no fake schema data
+- [ ] no fake schema
 
 ### Engineering
-- [ ] architecture stays within the efficiency harness unless justified
+- [ ] framework choice is minimal and justified
+- [ ] Cloudflare deployment documented
 - [ ] `bun install --frozen-lockfile`
-- [ ] lint passes
 - [ ] typecheck passes
 - [ ] build passes
-- [ ] no secrets committed
-- [ ] README is complete
+- [ ] no secrets
+- [ ] README complete
 
-## 15. Handoff
+## 16. Handoff
 
-When generation is complete, report:
+Report:
 - repository URL
 - branch/commit
+- framework choice and why
 - research summary
-- what is fictional vs. factual
-- deployment requirements
-- remaining manual asset/licensing work
-- any intentionally omitted integrations
-- any efficiency-budget exception and why it was necessary
+- what is factual vs inferred
+- temporary assets
+- Cloudflare deployment requirements
+- any remaining manual work
