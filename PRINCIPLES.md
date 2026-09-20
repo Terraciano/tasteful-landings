@@ -56,3 +56,68 @@ Avoid:
 Do not default to reusable SaaS components visually.
 
 A component system is encouraged technically, but composition should remain editorial.
+
+
+## Niche over tech
+
+Premium and luxury businesses should not default to a technology-company aesthetic.
+
+The visual language should make the business feel:
+- specialized
+- established
+- discreet
+- domain-native
+- culturally specific
+- confident without over-explaining itself
+
+Modernize execution, not personality.
+
+The interface may be technically modern while remaining visually non-tech.
+
+Avoid defaulting to:
+- SaaS layouts
+- startup copy
+- gradient-driven visual identity
+- excessive rounded UI
+- glassmorphism
+- app-like navigation
+- dashboard aesthetics
+- artificial futurism
+- "innovation" as a visual theme
+
+Prefer:
+- editorial composition
+- strong photography
+- physical materials
+- typography with character
+- asymmetry
+- restrained interaction
+- domain-specific details
+- provenance
+- craftsmanship
+- expertise
+- cultural references native to the industry
+
+
+## Insider credibility
+
+The site should feel designed by someone who understands the industry,
+not by someone applying a generic luxury template.
+
+Prefer signals recognizable to insiders:
+- technical terminology
+- product details
+- provenance
+- process
+- materials
+- specifications
+- geography
+- history
+- specialist knowledge
+
+Avoid generic luxury language such as:
+- elevate
+- unparalleled
+- redefine
+- exceptional experiences
+- where luxury meets innovation
