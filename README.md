@@ -1,6 +1,6 @@
 # Tasteful Sites (repo: tasteful-landings)
 
-A control repository for generating deploy-ready institutional/business websites for high-ticket, specialist and luxury industries.
+A control repository for generating deploy-ready institutional/business websites for high-ticket, specialist and luxury industries, and for refining existing personal portfolios without erasing their identity.
 
 This repo stores:
 - global design principles
@@ -11,7 +11,7 @@ This repo stores:
 - project-local Codex multi-agent configuration
 - lazy-loaded workflow skills
 - explicit zero-by-default generated-asset policy
-- site strategy that distinguishes institutional sites from campaign landings
+- site strategy that distinguishes institutional sites, personal portfolios, and campaign landings
 - the production contract every generated site must satisfy
 
 It does **not** store generated sites themselves.
@@ -37,10 +37,9 @@ It does **not** store generated sites themselves.
 
 Read `AGENTS.md`.
 
-There are two lifecycle flows. Site type is resolved separately.
+There are three lifecycle workflows. Site type and routing are resolved separately.
 
 ### First-contact / demo generation
-
 
 ```text
 PUBLIC INFORMATION
@@ -104,6 +103,35 @@ PRODUCTION-READY EXISTING REPO
 
 The final workflow does not regenerate a second site by default. It turns the original demo from a public-information hypothesis into a client-informed production artifact.
 
+### Existing personal portfolio refinement
+
+Use `refine-personal-portfolio` when the target is an existing personal website or portfolio.
+
+```text
+EXISTING PERSONAL SITE
+    ↓
+REPO EXPLORER
+    ↓
+PERSONAL-PORTFOLIO SITE STRATEGY
+    ↓
+BRAND_BASELINE.md
+COPY_BASELINE.md (when meaningful)
+    ↓
+DESIGN_DIRECTION.md
+REFINEMENT_PLAN.md
+    ↓
+SMALLEST COHERENT REFINEMENT
+reuse identity + improve clarity/work/trust/contact
+    ↓
+RELEASE REVIEW + BUILD
+    ↓
+COMPLETE LOCAL REPOSITORY
+```
+
+The person's identity is the brand. The workflow must preserve authorship, personality, technical/creative credibility, and recognizable visual signals while making selected work and commercial capability easy to understand.
+
+Interactive elements support identity; they are not the product. Reuse existing WebGL/3D/particle systems where practical and prioritize information architecture, selected work, case-study presentation, credibility, and contact before expanding visual experiments.
+
 Human-curated references are optional.
 
 If the user pins a reference in `industries/<industry>/REFERENCES.md`, the agent must inspect it. Otherwise the agent discovers project-specific references itself.
@@ -120,7 +148,8 @@ The harness is optimized around current Codex behavior:
 - concurrency is capped at 3
 - generated assets default to zero
 - first-party brand CSS/tokens are inspected before inventing visual direction
-- Vite + vanilla TypeScript/CSS is the default frontend stack
+- existing personal-site visual systems are reused before rebuilding them
+- Vite + vanilla TypeScript/CSS is the default frontend stack for generated sites
 - Astro is the static-complexity escape hatch
 - Next.js is an exception, not the baseline
 - Cloudflare Pages is the default deployment target
@@ -143,11 +172,15 @@ See `.agents/EFFICIENCY_HARNESS.md`.
 
 ## Expected request style
 
-Example:
+Business-site example:
 
 > Generate a first-contact institutional site for a private-aircraft brokerage named Northstar Aviation. Preserve specialist credibility and company narrative; choose single vs multi-page from the content. Create a build-ready local repository.
 
-The agent should resolve institutional vs campaign and single vs multi-page before choosing information architecture or copy.
+Personal-site example:
+
+> Refine this existing personal portfolio. Preserve the owner's creative/technical identity, make selected commercial work and engineering work easy to understand, improve trust and contact, reuse existing interactive systems where practical, and stop at a complete local repository.
+
+The agent should resolve site type and routing before choosing information architecture or copy.
 
 ## Repository map
 

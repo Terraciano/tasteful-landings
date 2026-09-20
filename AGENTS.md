@@ -6,12 +6,14 @@ This repository is the control plane. Client sites live in separate target repos
 
 - No existing demo repo → use the `generate-landing` skill in site-generation mode.
 - Discovery JSON with `refinement.mode = "refine-existing-demo"` → use the `refine-landing` skill.
+- Existing personal website/portfolio repo → use the `refine-personal-portfolio` skill.
 
-Do not execute both workflows.
+Do not execute multiple workflows for the same target.
 
 ## Persistent rules
 
-- Default project type is an institutional brand/business site, not a campaign landing.
+- Default business project type is an institutional brand/business site, not a campaign landing.
+- Personal portfolio refinement is a separate workflow: preserve the person's authored identity while improving clarity, evidence, selected work, credibility, and contact.
 - Campaign landing behavior is opt-in: use only when explicitly requested or clearly required by the brief.
 - Preserve niche/category identity; do not default to SaaS/startup aesthetics.
 - Never invent awards, clients, testimonials, statistics, credentials, locations, inventory, transaction history, or other proof.
