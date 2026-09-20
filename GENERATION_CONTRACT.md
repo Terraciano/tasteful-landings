@@ -2,7 +2,9 @@
 
 This document defines **generate mode**: creating a landing when no existing demo repository is supplied.
 
-The output is a NEW repository, not a subfolder of this repository.
+The output is a NEW LOCAL repository/directory, not a subfolder of this control repository.
+
+Do not create a GitHub remote or push it anywhere. The human operator owns remote creation, `git remote add`, push, and deployment.
 
 If a Discovery Console payload specifies `refinement.mode = "refine-existing-demo"`, use `REFINEMENT_CONTRACT.md` instead.
 
@@ -227,9 +229,25 @@ Document environment variables and never commit credentials.
 
 Default deployment target: **Cloudflare Pages**, but deployment itself is OUT OF SCOPE for the harness.
 
-The agent prepares the repository for manual human deployment.
+The agent prepares a local repository for manual human handoff.
+
+The normal boundary is:
+1. local repo exists
+2. source/research/README are complete
+3. local build passes
+4. stop
+
+The human operator then:
+1. creates/selects the GitHub remote
+2. adds the remote
+3. pushes the repo
+4. connects/deploys it to Cloudflare
 
 Do not:
+- create a GitHub repository
+- add or change git remotes
+- push to GitHub
+- use GitHub CLI to publish the target repo
 - open the Cloudflare dashboard
 - use browser automation for deployment
 - run `wrangler pages deploy`
@@ -260,7 +278,7 @@ If runtime/server behavior becomes necessary, document the Cloudflare Workers re
 
 Do not target Vercel by default.
 
-The normal completion point is: repository builds successfully and README contains the manual Cloudflare settings.
+The normal completion point is: the local repository builds successfully and README contains the manual GitHub/Cloudflare handoff settings.
 
 ## 14. CI
 
@@ -337,8 +355,8 @@ Add tests only for meaningful behavior.
 ## 16. Handoff
 
 Report:
-- repository URL
-- branch/commit
+- local repository path/name
+- branch/commit if git was initialized locally
 - framework choice and why
 - research summary
 - what is factual vs inferred
