@@ -1,16 +1,18 @@
-# Tasteful Landings — Codex routing
+# Tasteful Sites — Codex routing
 
-This repository is the control plane. Client landing pages live in separate target repositories.
+This repository is the control plane. Client sites live in separate target repositories.
 
 ## Resolve the mode first
 
-- No existing demo repo → use the `generate-landing` skill.
+- No existing demo repo → use the `generate-landing` skill in site-generation mode.
 - Discovery JSON with `refinement.mode = "refine-existing-demo"` → use the `refine-landing` skill.
 
 Do not execute both workflows.
 
 ## Persistent rules
 
+- Default project type is an institutional brand/business site, not a campaign landing.
+- Campaign landing behavior is opt-in: use only when explicitly requested or clearly required by the brief.
 - Preserve niche/category identity; do not default to SaaS/startup aesthetics.
 - Never invent awards, clients, testimonials, statistics, credentials, locations, inventory, transaction history, or other proof.
 - Human references are optional.

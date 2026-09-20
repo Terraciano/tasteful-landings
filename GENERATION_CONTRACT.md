@@ -1,6 +1,6 @@
-# Landing Repository Generation Contract
+# Site Repository Generation Contract
 
-This document defines **generate mode**: creating a landing when no existing demo repository is supplied.
+This document defines **generate mode**: creating a business/brand site when no existing demo repository is supplied.
 
 The output is a NEW LOCAL repository/directory, not a subfolder of this control repository.
 
@@ -13,6 +13,7 @@ If a Discovery Console payload specifies `refinement.mode = "refine-existing-dem
 At minimum:
 - industry
 - brand name
+- site type if explicitly known; otherwise default to institutional
 - whether the brand is real or fictional
 - target audience
 - primary offer
@@ -26,9 +27,11 @@ If information is missing, infer only low-risk creative details. Never invent fa
 Use `generate-landing` as the orchestration entrypoint.
 
 Before implementation:
+- run `site-strategy` and create `research/SITE_STRATEGY.md`
 - inspect first-party identity with `extract-brand-baseline` when an existing site is available
 - follow `RESEARCH_PROTOCOL.md`
 - follow the selected industry `RESEARCH_PLAYBOOK.md`
+- if meaningful first-party copy exists, run `extract-copy-baseline` and create `research/COPY_BASELINE.md`
 - follow `landing-assets`
 
 Default generated-asset budget is zero.
@@ -37,7 +40,9 @@ Required research files:
 
 ```text
 research/
+├── SITE_STRATEGY.md
 ├── BRAND_BASELINE.md   # when a first-party site exists
+├── COPY_BASELINE.md    # when meaningful first-party copy exists
 ├── MARKET.md
 ├── COMPETITORS.md
 ├── REFERENCES.md
@@ -52,7 +57,7 @@ Choose the smallest stack that satisfies the brief.
 
 ### Default: Vite + vanilla TypeScript
 
-Use for normal marketing sites and landing pages.
+Use for normal institutional sites and campaign pages.
 
 Baseline:
 - Vite
@@ -174,14 +179,27 @@ Every release-ready site must include:
 
 Do not add a framework merely for metadata generation.
 
-## 8. Copy
+## 8. Copy and narrative
 
-Run the copywriting skill only in the copy phase.
+Read `SITE_STRATEGY.md` before invoking copywriting.
+
+If `site type = institutional`:
+- preserve narrative jobs, voice, history, expertise, process, place, and intentional brand language
+- use `COPY_BASELINE.md` when available
+- improve hierarchy instead of compressing all content into a conversion funnel
+- multiple legitimate CTAs are allowed
+- problem/solution framing is optional and often inappropriate
+- do not force one idea/one CTA across the whole site
+- do not remove meaningful story simply because it is not directly conversion-oriented
+
+If `site type = campaign`, classic conversion-copy frameworks may be used.
+
+Run the vendored copywriting skill as a tool, not as the authority on site strategy.
 
 Require:
 - specific H1
-- supporting value proposition
-- explicit primary CTA
+- clear positioning or institutional orientation
+- explicit primary CTA where appropriate
 - industry-appropriate wording
 - no unsupported superlatives
 - no filler
@@ -296,7 +314,11 @@ Add tests only for meaningful behavior.
 
 ## 15. Release checklist
 
-### Research
+### Strategy/research
+- [ ] SITE_STRATEGY.md exists
+- [ ] site type is resolved: institutional or campaign
+- [ ] routing is resolved: single-page or multi-page
+- [ ] COPY_BASELINE.md exists when meaningful first-party copy exists
 - [ ] BRAND_BASELINE.md exists when a first-party site exists
 - [ ] MARKET.md exists
 - [ ] COMPETITORS.md exists
@@ -316,6 +338,7 @@ Add tests only for meaningful behavior.
 - [ ] production replacement/licensing needs explicit
 
 ### Design/content
+- [ ] institutional sites preserve meaningful narrative instead of collapsing into campaign copy
 - [ ] niche/industry identity visible
 - [ ] H1 and CTA specific
 - [ ] no fake proof

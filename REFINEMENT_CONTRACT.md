@@ -184,7 +184,27 @@ A refinement should normally preserve:
 - correct content structure
 - valid design decisions
 
-## 10. Copy behavior
+## 10. Site strategy and copy behavior
+
+Re-evaluate:
+- site type: institutional | campaign
+- routing: single-page | multi-page
+
+Discovery may reveal that an initial one-page demo needs multiple routes, or that apparently redundant copy serves a real narrative/brand job.
+
+For institutional sites, preserve meaningful:
+- origin/history
+- process/craft
+- expertise
+- place
+- philosophy
+- recurring brand vocabulary
+- product/service context
+- hospitality/culture
+
+Improve hierarchy and accuracy; do not automatically minimize narrative.
+
+### Copy behavior
 
 Replace speculative demo copy with:
 
@@ -196,6 +216,8 @@ Replace speculative demo copy with:
 Never retain demo claims that discovery contradicts.
 
 Never invent proof to make the final page feel more complete.
+
+Do not apply campaign-style single-CTA/problem-solution logic unless the site is explicitly classified as campaign.
 
 ## 11. Design behavior
 

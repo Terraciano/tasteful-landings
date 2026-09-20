@@ -28,7 +28,24 @@ Do not repeat category/visual research merely because the protocol contains a ph
 
 The normal stop condition still applies, but reliable discovery facts and previously valid demo research count toward satisfying it.
 
-## 0. First-party brand baseline
+## 0. Site strategy
+
+Before market/visual research, run `site-strategy`.
+
+Create:
+`research/SITE_STRATEGY.md`
+
+Default site type is **institutional**.
+
+Treat these as separate decisions:
+- site type: institutional | campaign
+- routing: single-page | multi-page
+
+Do not infer "campaign" merely from the word landing or from a one-page implementation.
+
+If the prospect already has meaningful first-party copy, run `extract-copy-baseline` and create `research/COPY_BASELINE.md`.
+
+## 0.5 First-party brand baseline
 
 In generate mode, if the prospect has an existing first-party website, inspect that identity before category/competitor visual research.
 
@@ -283,6 +300,8 @@ Before implementation, produce:
 
 ```text
 research/
+├── SITE_STRATEGY.md
+├── COPY_BASELINE.md    # when meaningful first-party copy exists
 ├── BRAND_BASELINE.md   # required when a first-party site exists
 ├── MARKET.md
 ├── COMPETITORS.md
@@ -291,6 +310,33 @@ research/
 ```
 
 These files belong in the generated landing repository.
+
+### SITE_STRATEGY.md
+
+Must contain:
+- site type
+- routing
+- visitor intents
+- business objective
+- primary/secondary CTAs
+- narrative jobs
+- trust jobs
+- proposed information architecture
+- what must not be compressed
+
+### COPY_BASELINE.md
+
+Required when meaningful first-party copy exists.
+
+Must capture:
+- voice
+- recurring vocabulary
+- narrative pillars
+- existing stories worth preserving
+- commercial messages
+- preserve
+- can simplify
+- unknowns
 
 ### BRAND_BASELINE.md
 
@@ -368,7 +414,8 @@ Research is complete when all are true:
 - at least 3 comparable businesses have been reviewed
 - at least 3 useful references have distinct roles
 - expected trust signals are known
-- primary conversion behavior is known
+- primary business objective and visitor intents are known
+- site type and routing are resolved
 - the agent can write a specific Design Read without using generic words such as "premium", "modern", or "luxury" as the main rationale
 - when a first-party site exists, proposed palette/type choices do not contradict the brand baseline without documented justification
 

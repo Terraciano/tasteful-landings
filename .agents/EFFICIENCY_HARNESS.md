@@ -24,7 +24,7 @@ Do not spawn all agents automatically.
 
 Maximum configured concurrency is 3. Prefer 1-2 useful subagents over a swarm.
 
-Never use parallel code-writing agents for a normal landing.
+Never use parallel code-writing agents for a normal site.
 
 ## 2. Model routing
 
@@ -82,7 +82,7 @@ Prefer existing/client/public temporary assets, CSS/typography, or explicit asse
 
 ## 6. Default frontend stack
 
-For a normal marketing landing, default to:
+For a normal institutional/business site, default to:
 
 - Vite
 - vanilla TypeScript
@@ -99,15 +99,15 @@ Framework escalation:
 2. **Astro** — use when multiple static routes, shared layouts, collections, or content reuse materially improve maintainability.
 3. **Next.js / full app framework** — exception only for real runtime/app requirements.
 
-SEO is not a reason to choose Next.js. Static HTML with correct metadata, structured content, robots/sitemap, canonical URLs, and crawlable links is sufficient for these landing sites.
+SEO is not a reason to choose Next.js. Static HTML with correct metadata, structured content, robots/sitemap, canonical URLs, and crawlable links is sufficient for these sites.
 
 Do not choose a framework because the agent is more familiar with it.
 
-Normal single-page landing:
-- 1 route
-- 1 layout
-- 1 page
-- 5-10 semantic sections
+Normal small site:
+- routing determined by SITE_STRATEGY.md
+- single-page only when content fits without narrative compression
+- multi-page allowed when distinct visitor intents/content domains justify it
+- no arbitrary page-count target
 - roughly 5-12 project-specific components
 - 0 state libraries
 - 0 UI frameworks
