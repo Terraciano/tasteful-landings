@@ -1,74 +1,109 @@
 # Tasteful Landings
 
-A control repository for generating deploy-ready landing-page repositories for high-ticket and luxury industries.
+A control repository for generating deploy-ready landing-page repositories for high-ticket, specialist and luxury industries.
 
 This repo stores:
-- design principles
-- industry-specific design briefs
-- curated reference frameworks
+- global design principles
+- deterministic research rules
+- industry-specific briefs and research playbooks
 - vendored agent skills for design, copywriting, and SEO
+- an efficiency harness
 - the production contract every generated landing must satisfy
 
-It does **not** store the generated sites themselves.
+It does **not** store generated sites themselves.
 
 ## Current industry pack
 
 - Private aviation
 
-More industry packs should be added only when their visual language, commercial behavior, trust signals, and conversion patterns have been researched.
-
 ## Agent entrypoint
 
 Read `AGENTS.md`.
 
-The core flow is:
+The flow is:
 
 ```text
+CLIENT DISCOVERY
+    +
 PRINCIPLES
     +
-GENERATION CONTRACT
-    +
 INDUSTRY BRIEF
-    +
-CURATED REFERENCES
-    +
-DESIGN / COPY / SEO SKILLS
     ↓
-AGENT
+DETERMINISTIC MARKET / COMPETITOR / VISUAL RESEARCH
     ↓
-NEW LANDING REPOSITORY
+MARKET.md
+COMPETITORS.md
+REFERENCES.md
+DESIGN_DIRECTION.md
     ↓
-CI + VERCEL-READY BUILD
+DESIGN SKILL
+    ↓
+LEAN IMPLEMENTATION
+    ↓
+COPY SKILL
+    ↓
+SEO + RELEASE QA
+    ↓
+NEW DEPLOY-READY REPOSITORY
 ```
 
-## Expected command/request style
+Human-curated references are optional.
+
+If the user pins a reference in `industries/<industry>/REFERENCES.md`, the agent must inspect it. Otherwise the agent discovers project-specific references itself.
+
+## Efficiency model
+
+Skills are loaded by phase instead of all at once.
+
+Generated repos should be technically boring and visually distinctive.
+
+The default single-page landing should not need:
+- a UI framework
+- a state library
+- a CMS
+- a database
+- dozens of components
+- speculative abstractions
+- a large unit-test suite
+
+See `.agents/EFFICIENCY_HARNESS.md`.
+
+## Expected request style
 
 Example:
 
 > Generate a fictional private-aircraft brokerage landing named Northstar Aviation. Target aircraft owners and buyers in South Florida. Primary CTA: Request aircraft details. Create it as a separate deploy-ready repository.
 
-The agent should use the repository contract rather than inventing a design system from scratch.
+The agent should research the current category before choosing a design direction.
 
 ## Repository map
 
 ```text
 .
 ├── .agents/
+│   ├── EFFICIENCY_HARNESS.md
 │   ├── product-marketing.template.md
 │   └── skills/
 ├── industries/
+│   ├── _template/
 │   └── aviation/
 │       ├── BRIEF.md
-│       └── REFERENCES.md
+│       ├── REFERENCES.md
+│       └── RESEARCH_PLAYBOOK.md
 ├── AGENTS.md
 ├── GENERATION_CONTRACT.md
 ├── PRINCIPLES.md
+├── RESEARCH_PROTOCOL.md
 ├── THIRD_PARTY_SKILLS.md
 └── README.md
 ```
 
 ## Human work still required
 
-The highest-value human input is reference curation and asset licensing.
+The primary human input should be:
+- good discovery with the client
+- any non-negotiable brand/reference direction
+- access to real brand assets and factual proof
+- approval/licensing of final production imagery and fonts
 
-Do not automate taste by blindly scraping inspiration sites. Approve the references that actually fit each vertical, then let the agent execute within those constraints.
+Manual moodboard curation is not required for every project.

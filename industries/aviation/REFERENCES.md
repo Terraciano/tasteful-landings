@@ -1,57 +1,26 @@
-# Private Aviation — Reference Framework
+# Private Aviation — Optional Human References
 
-This file is intentionally a curation framework, not a list of sites to copy.
+Human-curated references are optional.
 
-The agent must treat references as sources of patterns, never as permission to reproduce a brand identity.
+The default workflow is defined by:
+- `RESEARCH_PROTOCOL.md`
+- `industries/aviation/RESEARCH_PLAYBOOK.md`
 
-## Reference roles
+The agent must research current market and visual references for each client/project.
 
-Curate references across distinct roles:
+Use this file only when the human wants to pin a specific reference or override the agent's research.
 
-### 1. Inventory and brokerage UX
-Look for:
-- aircraft browsing hierarchy
-- model/year/spec presentation
-- filtering patterns
-- inquiry placement
-- credibility structure
+## Priority rule
 
-Candidate sources to review manually:
-- Jetcraft
-- Controller
-- AvBuyer
-- GlobalAir
+If references are listed here, the agent must inspect them during research and treat them as high-priority evidence.
 
-### 2. OEM product storytelling
-Look for:
-- aircraft hero composition
-- technical storytelling
-- performance/specification hierarchy
-- cabin presentation
-- image sequencing
+They do not override:
+- factual integrity
+- accessibility
+- the client's explicit constraints
+- `PRINCIPLES.md`
 
-Candidate sources:
-- Gulfstream
-- Bombardier
-- Dassault Aviation
-- Embraer Executive Jets
-
-### 3. Premium editorial / service language
-Look for:
-- restrained lifestyle presentation
-- typography
-- white space
-- photography pacing
-- discreet conversion
-
-Candidate sources:
-- VistaJet
-- NetJets
-- Flexjet
-
-## How to document an accepted reference
-
-For each manually approved reference, add an entry:
+## Optional pinned reference format
 
 ```md
 ### <Brand / page>
@@ -65,26 +34,9 @@ Use for:
 Do not copy:
 - ...
 
-Observed patterns:
-- ...
-
-Why it fits this industry:
+Reason this reference matters:
 - ...
 ```
-
-## Reference acceptance rule
-
-Do not add a reference merely because it looks expensive.
-
-It must teach at least one useful pattern in:
-- hierarchy
-- typography
-- photography
-- information density
-- trust
-- conversion
-- technical presentation
-- interaction
 
 ## Prohibited copying
 

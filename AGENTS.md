@@ -2,49 +2,92 @@
 
 This repository is a control plane for generating production-ready landing-page repositories for high-ticket and luxury industries.
 
-It is NOT the repository where generated landing pages live.
+It is NOT where generated landing pages live.
 
-A generated landing must be created as its own repository and be deployable independently.
-
-## Mandatory sources of truth
-
-Before generating or modifying a landing repository, read in this order:
-
-1. `PRINCIPLES.md`
-2. `GENERATION_CONTRACT.md`
-3. the selected industry's `industries/<industry>/BRIEF.md`
-4. the selected industry's `industries/<industry>/REFERENCES.md`
-5. `.agents/skills/design-taste-frontend/SKILL.md`
-6. `.agents/skills/copywriting/SKILL.md`
-7. `.agents/skills/seo-audit/SKILL.md`
-
-If the target repository already exists, inspect it before making changes.
+A generated landing must be created as its own repository and be independently deployable.
 
 ## Core rule
 
 Never start from generic frontend assumptions.
 
-The industry brief controls visual language, audience, trust signals, information hierarchy, photography direction, and conversion behavior.
+The agent must first understand:
+1. the client
+2. the exact industry/subcategory
+3. the buyer
+4. the category's own visual and commercial language
 
-The design skill controls execution quality and anti-slop checks.
+Human-curated references are optional.
 
-The copywriting skill controls persuasive structure and wording.
+If they are absent, perform research using the deterministic protocol in `RESEARCH_PROTOCOL.md` and the selected industry's `RESEARCH_PLAYBOOK.md`.
 
-The SEO skill is a release gate, not an afterthought.
+## Phase-based context loading
 
-## Generation workflow
+Do not load every skill at once.
 
-1. Read the required sources of truth.
-2. Produce a short internal design read.
-3. Define the page's primary conversion action.
-4. Establish the information architecture and section order.
-5. Establish design tokens and typography before component implementation.
-6. Implement the landing repository.
-7. Run copy review.
-8. Run technical SEO review.
-9. Run responsive, accessibility, and visual QA.
-10. Run build, lint, and type checks.
-11. Only then consider the repository release-ready.
+Follow `.agents/EFFICIENCY_HARNESS.md`.
+
+### Phase 1 — Research
+
+Read:
+1. `PRINCIPLES.md`
+2. `RESEARCH_PROTOCOL.md`
+3. `.agents/EFFICIENCY_HARNESS.md`
+4. `industries/<industry>/BRIEF.md`
+5. `industries/<industry>/RESEARCH_PLAYBOOK.md` if present
+6. `industries/<industry>/REFERENCES.md` only if it contains pinned references
+7. client/discovery brief
+
+Then research and create in the generated repository:
+
+```text
+research/
+├── MARKET.md
+├── COMPETITORS.md
+├── REFERENCES.md
+└── DESIGN_DIRECTION.md
+```
+
+Do not implement before `DESIGN_DIRECTION.md` exists.
+
+### Phase 2 — Design and implementation
+
+Read:
+1. generated `research/DESIGN_DIRECTION.md`
+2. `.agents/skills/design-taste-frontend/SKILL.md`
+3. `GENERATION_CONTRACT.md`
+
+Implement using the smallest architecture that satisfies the brief.
+
+### Phase 3 — Copy
+
+Read:
+1. client/discovery brief
+2. generated `research/MARKET.md`
+3. industry `BRIEF.md`
+4. `.agents/skills/copywriting/SKILL.md`
+
+Write/review final page copy.
+
+### Phase 4 — Release
+
+Read:
+1. `GENERATION_CONTRACT.md`
+2. `.agents/skills/seo-audit/SKILL.md`
+3. implemented site
+
+Run relevant SEO, accessibility, responsive, build, lint, and type checks.
+
+## Research behavior
+
+The agent must navigate research using:
+- `RESEARCH_PROTOCOL.md` for the global sequence and stop condition
+- `industries/<industry>/RESEARCH_PLAYBOOK.md` for industry-specific queries, entities, terminology, and insider signals
+
+Do not search indefinitely.
+
+Do not treat "looks expensive" as a sufficient reason to select a reference.
+
+Do not turn every high-ticket business into a technology company.
 
 ## Content integrity
 
@@ -79,6 +122,7 @@ Avoid:
 - generic AI marketing copy
 - decorative motion that blocks reading
 - placeholder lorem ipsum in a release-ready result
+- unnecessary architectural abstraction
 
 ## Generated repository default stack
 
@@ -88,24 +132,27 @@ Unless the brief requires otherwise:
 - TypeScript, strict
 - React Server Components by default
 - Tailwind CSS v4
-- Motion only when motion has a defined purpose
-- Bun as package manager
+- Bun
 - Vercel-compatible build
+- no state library
+- no UI framework
 - no database
 - no authentication
-- no runtime server dependency unless required by the brief
+- no runtime server dependency
+- no animation library unless justified by the design direction
 
-See `GENERATION_CONTRACT.md` for the full output contract.
+See `GENERATION_CONTRACT.md` and `.agents/EFFICIENCY_HARNESS.md`.
 
 ## Definition of done
 
 A landing is not done because it renders.
 
 It must:
+- reflect researched category language
+- preserve the client's identity instead of imposing a tech aesthetic
 - look deliberate rather than templated
-- fit the target industry's visual language
 - contain credible conversion-oriented copy
 - work from small mobile through large desktop
 - have complete metadata and crawl/index primitives
-- pass the release checklist in `GENERATION_CONTRACT.md`
+- pass the release checklist
 - be independently deployable
