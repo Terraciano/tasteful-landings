@@ -222,6 +222,7 @@ In refinement mode:
 - do not refactor stable code outside the refinement scope
 - keep client JS minimal
 - preserve working deployment configuration unless incorrect
+- do not deploy, open Cloudflare, run Wrangler, modify DNS, or verify production unless explicitly requested by the user
 
 ## 13. Completion gate
 
@@ -235,4 +236,4 @@ Refinement is complete only when:
 - design direction reflects the client rather than the initial guess
 - copy contains no unsupported factual claims
 - release checks pass
-- the site remains deployable
+- the site remains ready for manual deployment
