@@ -8,6 +8,9 @@ This repo stores:
 - industry-specific briefs and research playbooks
 - vendored agent skills for design, copywriting, and SEO
 - an efficiency harness
+- project-local Codex multi-agent configuration
+- lazy-loaded workflow skills
+- explicit zero-by-default generated-asset policy
 - the production contract every generated landing must satisfy
 
 It does **not** store generated sites themselves.
@@ -96,6 +99,16 @@ If the user pins a reference in `industries/<industry>/REFERENCES.md`, the agent
 
 ## Efficiency model
 
+The harness is optimized around current Codex behavior:
+
+- root `AGENTS.md` is intentionally short because project instructions are injected persistently
+- workflow details live in Skills and load progressively
+- one main agent owns synthesis + implementation
+- Luna read-only subagents handle cheap exploration/extraction
+- Terra is reserved for visual analysis and final review
+- concurrency is capped at 3
+- generated assets default to zero
+
 Skills are loaded by phase instead of all at once.
 
 Generated repos should be technically boring and visually distinctive.
@@ -123,6 +136,9 @@ The agent should research the current category before choosing a design directio
 
 ```text
 .
+├── .codex/
+│   ├── config.toml
+│   └── agents/
 ├── .agents/
 │   ├── EFFICIENCY_HARNESS.md
 │   ├── product-marketing.template.md

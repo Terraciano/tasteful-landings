@@ -1,203 +1,138 @@
 # Agent Efficiency Harness
 
-The objective is a deploy-ready marketing landing, not a general-purpose frontend platform.
+Optimize for output quality per token, not maximum agent activity.
 
-Optimize for:
-1. correct visual direction
-2. credible copy
-3. fast page delivery
-4. minimal implementation complexity
-5. minimal context and token waste
+## 1. Orchestration
 
-Complexity must earn its place.
+Main agent owns:
+- task/mode resolution
+- research synthesis
+- design direction
+- copy decisions
+- implementation
+- final fixes
 
-## 1. Progressive context loading
+Use subagents only when their isolated work would otherwise pollute the main context.
 
-Do NOT load every skill at the start.
+Default custom agents:
+- `market_researcher` — Luna/medium, read-only
+- `repo_explorer` — Luna/medium, read-only
+- `visual_researcher` — Terra/medium, read-only, conditional
+- `reviewer` — Terra/high, read-only, final gate
 
-Use this sequence:
+Do not spawn all agents automatically.
 
-### Research phase
-Read only:
-- `PRINCIPLES.md`
-- `RESEARCH_PROTOCOL.md`
-- industry `BRIEF.md`
-- industry `RESEARCH_PLAYBOOK.md` if present
-- client/discovery brief
+Maximum configured concurrency is 3. Prefer 1-2 useful subagents over a swarm.
 
-Do not load SEO or copywriting skill yet.
+Never use parallel code-writing agents for a normal landing.
 
-### Design phase
-Additionally read:
-- `.agents/skills/design-taste-frontend/SKILL.md`
-- generated `research/DESIGN_DIRECTION.md`
+## 2. Model routing
 
-Use the skill to make concrete decisions, then stop rereading it.
+Use the strongest model/main session for ambiguous multi-step synthesis and implementation.
 
-### Copy phase
-Read:
-- client brief
-- `research/MARKET.md`
-- industry brief
-- `.agents/skills/copywriting/SKILL.md`
+Use Luna for:
+- repo mapping
+- extraction
+- classification
+- structured summaries
+- narrow repetitive checks
 
-Do not reread the full design skill unless a design/copy conflict appears.
+Use Terra for:
+- visual reference analysis
+- nuanced review
+- higher-risk validation
 
-### Release phase
-Read:
-- `GENERATION_CONTRACT.md`
-- `.agents/skills/seo-audit/SKILL.md`
-- implemented site
+Use high reasoning only for final review or genuinely difficult ambiguity.
 
-Run only the relevant SEO checks for the generated site.
+Do not use expensive reasoning for deterministic extraction.
 
-## 2. Default architecture budget
+## 3. Progressive disclosure
 
-For a normal single-page landing, default to:
+Root `AGENTS.md` is routing only.
 
+Workflow details belong in skills because Codex loads full skill instructions only when selected.
+
+Do not manually preload:
+- design skill
+- copy skill
+- SEO skill
+- all industry packs
+- both generation/refinement contracts
+
+Read only the selected industry and active workflow.
+
+## 4. Asset budget
+
+Default generated-asset budget: zero.
+
+Use `landing-assets`.
+
+Do not burn a run generating custom imagery, logos, illustrations, SVG scenes, textures, icon sets, or video for a first-contact demo.
+
+Prefer existing/client/public temporary assets, CSS/typography, or explicit asset slots.
+
+## 5. Research token discipline
+
+- targeted searches, not broad browsing
+- concise findings, not copied pages
+- 1 positioning sentence + max 5-8 useful observations per reference
+- stop when patterns repeat
+- refinement mode researches gaps only
+- subagents return distilled summaries only
+
+## 6. Default frontend budget
+
+Normal single-page landing:
 - 1 route
 - 1 layout
 - 1 page
-- 5-10 semantic page sections
-- 0 state-management libraries
-- 0 UI component frameworks
+- 5-10 semantic sections
+- roughly 5-12 project-specific components
+- 0 state libraries
+- 0 UI frameworks
 - 0 data-fetching libraries
-- 0 form libraries unless validation complexity requires one
-- 0 animation libraries unless the design direction explicitly benefits from motion
-- 0 custom hooks unless behavior is genuinely reused
 - 0 context providers unless required
-- 0 backend/database/authentication unless requested
+- 0 backend/database/auth unless requested
+- 0 animation libraries unless design direction justifies one
 
-These are defaults, not hard technical limits. Exceed them only with a concrete reason.
+## 7. Component rule
 
-## 3. Component extraction rule
+Extract a component only when it:
+- is reused
+- owns a substantial semantic section
+- isolates real client behavior
+- materially improves readability
 
-Do not componentize for ceremony.
+No ceremony wrappers or speculative design systems.
 
-Create a component only when at least one is true:
+## 8. Client JS
 
-1. it is reused
-2. it owns a substantial semantic section
-3. it isolates client-side behavior
-4. it materially improves readability of `page.tsx`
+Default static/server-rendered.
 
-Do not create:
-- one-line wrapper components
-- components used once solely to make the file tree look architectural
-- generic primitives that Tailwind/native HTML already express clearly
-- a design-system package for one landing page
+Client Components only for actual browser interaction.
 
-A typical single-page landing should usually need roughly 5-12 project-specific components, not dozens.
+Prefer CSS for hover, focus, responsive layout, and simple transitions.
 
-## 4. Client JavaScript budget
+## 9. Dependencies
 
-Default: server-rendered/static.
+Every dependency must provide something the platform/React/Next/CSS cannot provide simply enough.
 
-Client Components are allowed only for:
-- navigation behavior that needs state
-- form interaction
-- gallery/carousel behavior
-- purposeful motion
-- other actual browser interaction
+If the justification is weak, do not install it.
 
-Do not mark an entire page `"use client"` to make one element interactive.
+## 10. Tests
 
-Prefer CSS for:
-- hover
-- focus
-- simple transitions
-- responsive layout
-- simple reveal effects when they can be implemented accessibly without JS
-
-## 5. Styling budget
-
-Prefer:
-- Tailwind utilities
-- a small set of CSS custom properties in `globals.css`
-- semantic section-level components
-
-Avoid:
-- creating a token generation pipeline
-- CSS-in-JS
-- theme providers for a one-theme site
-- utility wrappers around Tailwind
-- dozens of bespoke spacing variables
-
-Define only tokens actually used by the site.
-
-## 6. Dependency rule
-
-Every dependency must answer:
-
-"What does this provide that the platform, Next.js, React, or CSS cannot provide simply enough?"
-
-If the answer is weak, do not install it.
-
-Default dependencies should be close to:
-- next
-- react
-- react-dom
-- Tailwind/PostCSS tooling
-
-Add Motion only when justified by `DESIGN_DIRECTION.md`.
-
-Add an icon library only if the design actually uses multiple icons.
-
-## 7. Content/data rule
-
-For concept/portfolio landings:
-- keep small static content close to the component that owns it
-- use a simple typed data file only when repeated data benefits from it
-- do not add CMS abstractions
-- do not create repositories/services/hooks for static content
-- do not add JSON schemas unless another system actually consumes them
-
-## 8. Test budget
-
-For a mostly static marketing landing, mandatory quality gates are:
-
+For a mostly static landing:
 - lint
 - TypeScript
 - production build
 - responsive visual check
 - keyboard/accessibility check
-- broken-link/form behavior check
+- links/form behavior
 
 Do not build a large unit-test suite for static markup.
 
-Add automated behavior tests only when meaningful behavior exists.
+## 11. Stop rules
 
-## 9. Research token discipline
+Before adding a file, dependency, abstraction, agent, research source, or generated asset, ask whether it resolves a current requirement.
 
-Never paste full competitor pages into research files.
-
-Store concise findings.
-
-Per competitor/reference, target roughly:
-- one positioning sentence
-- 5-8 observations maximum
-
-Stop searching once the stop condition in `RESEARCH_PROTOCOL.md` is satisfied.
-
-## 10. Implementation discipline
-
-Prefer one coherent implementation pass over speculative abstractions.
-
-Before adding a new file, dependency, abstraction, or architectural layer, ask:
-
-- Is it required by the brief?
-- Is it required by the generation contract?
-- Is it reused?
-- Does it reduce complexity rather than merely move it?
-
-If all answers are no, do not add it.
-
-## 11. No premature generalization
-
-Generated landing repositories are disposable, independent deliverables.
-
-Do not make them extensible for hypothetical future products, dashboards, CMSs, locales, themes, or apps unless requested.
-
-The control plane repository is where reusable knowledge lives.
-
-The generated repo should remain boring technically and distinctive visually.
+If not, stop.
