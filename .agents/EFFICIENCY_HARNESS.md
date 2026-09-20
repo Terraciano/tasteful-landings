@@ -157,11 +157,16 @@ Do not build a large unit-test suite for static markup.
 Default deployment-action budget: zero.
 
 The harness ends after:
+- local repository is complete
 - local/static build passes
 - required files exist
-- deployment settings are documented
+- remote/deployment settings are documented for the human operator
 
 Do not spend tokens on:
+- creating a GitHub repository
+- configuring git remotes
+- pushing commits
+- GitHub CLI publication
 - Cloudflare dashboard/browser navigation
 - Wrangler deployment
 - authentication
