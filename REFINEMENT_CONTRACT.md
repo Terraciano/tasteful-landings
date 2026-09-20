@@ -4,6 +4,8 @@ This contract defines how to turn a discovery brief into a production-ready refi
 
 The default behavior is refinement, not regeneration.
 
+Use the `refine-landing` skill as the orchestration entrypoint. Use read-only subagents for repo exploration/research and keep implementation in the main agent.
+
 ## 1. Required inputs
 
 Refinement mode requires:
@@ -212,6 +214,9 @@ The final site should feel like a better-informed version of the demo, not an un
 Follow `.agents/EFFICIENCY_HARNESS.md`.
 
 In refinement mode:
+- default generated-asset budget is zero
+- preserve usable existing assets
+- replace temporary assets with client-owned/licensed assets when available
 - do not migrate frameworks for taste
 - do not introduce libraries without need
 - do not refactor stable code outside the refinement scope
