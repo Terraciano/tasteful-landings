@@ -6,6 +6,28 @@ Human-provided references are optional and, when present, are high-priority evid
 
 The purpose of research is not to collect many links. It is to reduce uncertainty about the business, its category, buyer expectations, and visual language.
 
+## Research modes
+
+### Generate mode
+
+Run the protocol normally.
+
+### Refine-existing-demo mode
+
+Before any market research:
+
+1. read `DISCOVERY_INPUT_CONTRACT.md`
+2. inspect the existing demo
+3. create `research/DEMO_AUDIT.md`
+4. compare discovery evidence against demo assumptions
+5. classify research needs as resolved, unresolved, or contradicted
+
+Then run only the phases needed to resolve unresolved or contradicted items.
+
+Do not repeat category/visual research merely because the protocol contains a phase for it.
+
+The normal stop condition still applies, but reliable discovery facts and previously valid demo research count toward satisfying it.
+
 ## 1. Inputs
 
 Start from the client/discovery brief.
