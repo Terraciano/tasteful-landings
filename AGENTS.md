@@ -1,10 +1,41 @@
 # Repository purpose
 
-This repository is a control plane for generating production-ready landing-page repositories for high-ticket and luxury industries.
+This repository is a control plane for creating and refining production-ready landing pages for high-ticket and luxury industries.
 
-It is NOT where generated landing pages live.
+It is NOT where client landing pages live.
 
-A generated landing must be created as its own repository and be independently deployable.
+In generate mode, create a new independently deployable repository. In refinement mode, modify the existing demo repository identified by discovery.
+
+## Operating modes
+
+The harness has two modes.
+
+### Generate mode
+
+Use when there is no existing demo repository.
+
+Follow `GENERATION_CONTRACT.md`.
+
+### Refine-existing-demo mode
+
+Use when the input includes a Discovery Console `client-brief.json` with:
+
+```json
+{
+  "refinement": {
+    "mode": "refine-existing-demo"
+  }
+}
+```
+
+Read:
+1. `DISCOVERY_INPUT_CONTRACT.md`
+2. `REFINEMENT_CONTRACT.md`
+3. `schemas/client-brief.schema.json`
+
+Then inspect `project.demoRepository` before research or implementation.
+
+In refinement mode, the existing demo is the starting artifact. Do not create a replacement repository and do not regenerate from scratch without a concrete reason.
 
 ## Core rule
 
@@ -26,6 +57,19 @@ Do not load every skill at once.
 
 Follow `.agents/EFFICIENCY_HARNESS.md`.
 
+### Phase 0 — Input and mode resolution
+
+If a `client-brief.json` is present:
+
+1. validate its schema version
+2. identify `project.demoRepository`
+3. classify evidence as confirmed / inferred / unknown
+4. select refinement mode when `refinement.mode = "refine-existing-demo"`
+5. inspect the demo and create `research/DEMO_AUDIT.md`
+6. create `research/REFINEMENT_PLAN.md` before editing
+
+For refinement mode, follow `REFINEMENT_CONTRACT.md`.
+
 ### Phase 1 — Research
 
 Read:
@@ -37,7 +81,12 @@ Read:
 6. `industries/<industry>/REFERENCES.md` only if it contains pinned references
 7. client/discovery brief
 
-Then research and create in the generated repository:
+Then research and create in the target repository.
+
+In generate mode, perform the full research protocol.
+
+In refinement mode, research only unresolved or contradicted gaps after the demo audit and discovery evidence review.
+
 
 ```text
 research/
@@ -47,16 +96,20 @@ research/
 └── DESIGN_DIRECTION.md
 ```
 
-Do not implement before `DESIGN_DIRECTION.md` exists.
+Do not implement before `DESIGN_DIRECTION.md` exists. In refinement mode, `DEMO_AUDIT.md` and `REFINEMENT_PLAN.md` must also exist.
 
 ### Phase 2 — Design and implementation
 
 Read:
-1. generated `research/DESIGN_DIRECTION.md`
+1. target repo `research/DESIGN_DIRECTION.md`
 2. `.agents/skills/design-taste-frontend/SKILL.md`
-3. `GENERATION_CONTRACT.md`
+3. the active mode contract:
+   - generate: `GENERATION_CONTRACT.md`
+   - refinement: `REFINEMENT_CONTRACT.md`
 
-Implement using the smallest architecture that satisfies the brief.
+In refinement mode, also read `research/DEMO_AUDIT.md` and `research/REFINEMENT_PLAN.md`.
+
+Implement using the smallest architecture/change set that satisfies the brief.
 
 ### Phase 3 — Copy
 
@@ -71,7 +124,7 @@ Write/review final page copy.
 ### Phase 4 — Release
 
 Read:
-1. `GENERATION_CONTRACT.md`
+1. the active mode contract
 2. `.agents/skills/seo-audit/SKILL.md`
 3. implemented site
 
@@ -155,4 +208,4 @@ It must:
 - work from small mobile through large desktop
 - have complete metadata and crawl/index primitives
 - pass the release checklist
-- be independently deployable
+- be deployable from the correct target repository

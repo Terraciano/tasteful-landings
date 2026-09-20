@@ -20,10 +20,13 @@ It does **not** store generated sites themselves.
 
 Read `AGENTS.md`.
 
-The flow is:
+There are two flows.
+
+### First-contact / demo generation
+
 
 ```text
-CLIENT DISCOVERY
+PUBLIC INFORMATION
     +
 PRINCIPLES
     +
@@ -44,8 +47,35 @@ COPY SKILL
     ↓
 SEO + RELEASE QA
     ↓
-NEW DEPLOY-READY REPOSITORY
+NEW DEMO REPOSITORY
 ```
+
+### Post-discovery refinement
+
+```text
+DISCOVERY CALL
+    ↓
+Discovery Console
+    ↓
+client-brief.json
+    +
+EXISTING DEMO REPO
+    ↓
+DEMO_AUDIT.md
+    ↓
+GAP-ONLY RESEARCH
+    ↓
+DESIGN_DIRECTION.md
+REFINEMENT_PLAN.md
+    ↓
+FOCUSED REFINEMENT
+    ↓
+COPY + SEO + RELEASE QA
+    ↓
+PRODUCTION-READY EXISTING REPO
+```
+
+The final workflow does not regenerate a second site by default. It turns the original demo from a public-information hypothesis into a client-informed production artifact.
 
 Human-curated references are optional.
 
@@ -90,8 +120,12 @@ The agent should research the current category before choosing a design directio
 │       ├── BRIEF.md
 │       ├── REFERENCES.md
 │       └── RESEARCH_PLAYBOOK.md
+├── schemas/
+│   └── client-brief.schema.json
 ├── AGENTS.md
+├── DISCOVERY_INPUT_CONTRACT.md
 ├── GENERATION_CONTRACT.md
+├── REFINEMENT_CONTRACT.md
 ├── PRINCIPLES.md
 ├── RESEARCH_PROTOCOL.md
 ├── THIRD_PARTY_SKILLS.md
