@@ -112,13 +112,28 @@ Do not default to:
 
 A serif is valid when the actual brand/category direction justifies it.
 
+## Brand fidelity
+
+When a real prospect already has a visible identity, treat it as evidence rather than inspiration.
+
+Before inventing a palette, typography direction, or UI accent:
+- inspect the first-party site
+- inspect CSS variables / recurring color values when accessible
+- identify actual font families
+- identify recurring logo/background usage
+- identify recurring shape/button/navigation cues
+
+Do not invent a new accent color simply to make the demo feel more designed.
+
+A category convention can influence composition and art direction, but should not silently replace an established brand system.
+
 ## Color
 
-Color palettes should come from the industry and client context.
+Color palettes should come from first-party brand evidence first, then industry/client context.
 
 Use restrained palettes.
 
-Accent colors should have a reason to exist.
+Accent colors should have a reason to exist and should not conflict with established brand colors.
 
 ## Motion
 

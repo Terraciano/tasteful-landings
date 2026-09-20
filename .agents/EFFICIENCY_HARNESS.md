@@ -80,7 +80,28 @@ Prefer existing/client/public temporary assets, CSS/typography, or explicit asse
 - refinement mode researches gaps only
 - subagents return distilled summaries only
 
-## 6. Default frontend budget
+## 6. Default frontend stack
+
+For a normal marketing landing, default to:
+
+- Vite
+- vanilla TypeScript
+- semantic HTML
+- plain CSS or a very small utility layer only if it reduces complexity
+- static output
+- Bun
+- Cloudflare Pages
+- no React by default
+
+Framework escalation:
+
+1. **Vanilla + Vite** — default for 1-5 mostly static pages.
+2. **Astro** — use when multiple static routes, shared layouts, collections, or content reuse materially improve maintainability.
+3. **Next.js / full app framework** — exception only for real runtime/app requirements.
+
+SEO is not a reason to choose Next.js. Static HTML with correct metadata, structured content, robots/sitemap, canonical URLs, and crawlable links is sufficient for these landing sites.
+
+Do not choose a framework because the agent is more familiar with it.
 
 Normal single-page landing:
 - 1 route
@@ -107,15 +128,15 @@ No ceremony wrappers or speculative design systems.
 
 ## 8. Client JS
 
-Default static/server-rendered.
+Default static HTML with minimal browser JavaScript.
 
-Client Components only for actual browser interaction.
+Add JavaScript only for actual browser interaction.
 
 Prefer CSS for hover, focus, responsive layout, and simple transitions.
 
 ## 9. Dependencies
 
-Every dependency must provide something the platform/React/Next/CSS cannot provide simply enough.
+Every dependency must provide something the browser platform, Vite, HTML, TypeScript, or CSS cannot provide simply enough.
 
 If the justification is weak, do not install it.
 

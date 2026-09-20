@@ -28,6 +28,32 @@ Do not repeat category/visual research merely because the protocol contains a ph
 
 The normal stop condition still applies, but reliable discovery facts and previously valid demo research count toward satisfying it.
 
+## 0. First-party brand baseline
+
+In generate mode, if the prospect has an existing first-party website, inspect that identity before category/competitor visual research.
+
+Run the `extract-brand-baseline` skill and create:
+
+`research/BRAND_BASELINE.md`
+
+The baseline should extract only useful first-party signals:
+- recurring brand colors and their actual roles
+- font families / weight patterns
+- logo treatment
+- recurring border/radius/shape cues
+- navigation/button treatment
+- media language
+- identity cues to preserve
+- unknowns
+
+Inspect CSS/design tokens directly when accessible.
+
+Do not paste entire stylesheets.
+
+A competitor, category leader, or generic industry palette must never override a clear first-party brand signal without an explicit reason documented in `DESIGN_DIRECTION.md`.
+
+If no first-party identity exists, record that and continue.
+
 ## 1. Inputs
 
 Start from the client/discovery brief.
@@ -257,6 +283,7 @@ Before implementation, produce:
 
 ```text
 research/
+├── BRAND_BASELINE.md   # required when a first-party site exists
 ├── MARKET.md
 ├── COMPETITORS.md
 ├── REFERENCES.md
@@ -264,6 +291,21 @@ research/
 ```
 
 These files belong in the generated landing repository.
+
+### BRAND_BASELINE.md
+
+Required when a first-party site exists.
+
+Must contain:
+- first-party sources inspected
+- brand colors with role + confidence
+- typography
+- logo treatment
+- shape/UI cues
+- media language
+- preserve
+- safe to reinterpret
+- unknowns
 
 ### MARKET.md
 
@@ -328,5 +370,6 @@ Research is complete when all are true:
 - expected trust signals are known
 - primary conversion behavior is known
 - the agent can write a specific Design Read without using generic words such as "premium", "modern", or "luxury" as the main rationale
+- when a first-party site exists, proposed palette/type choices do not contradict the brand baseline without documented justification
 
 If these conditions are met, stop researching and build.
