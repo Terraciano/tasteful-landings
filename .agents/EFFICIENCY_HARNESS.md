@@ -152,7 +152,31 @@ For a mostly static landing:
 
 Do not build a large unit-test suite for static markup.
 
-## 11. Stop rules
+## 11. Deployment token budget
+
+Default deployment-action budget: zero.
+
+The harness ends after:
+- local repository is complete
+- local/static build passes
+- required files exist
+- remote/deployment settings are documented for the human operator
+
+Do not spend tokens on:
+- creating a GitHub repository
+- configuring git remotes
+- pushing commits
+- GitHub CLI publication
+- Cloudflare dashboard/browser navigation
+- Wrangler deployment
+- authentication
+- DNS
+- polling deployment state
+- opening the deployed site for verification
+
+These are human/manual steps unless explicitly requested.
+
+## 12. Stop rules
 
 Before adding a file, dependency, abstraction, agent, research source, or generated asset, ask whether it resolves a current requirement.
 

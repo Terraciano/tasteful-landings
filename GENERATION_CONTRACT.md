@@ -2,7 +2,9 @@
 
 This document defines **generate mode**: creating a landing when no existing demo repository is supplied.
 
-The output is a NEW repository, not a subfolder of this repository.
+The output is a NEW LOCAL repository/directory, not a subfolder of this control repository.
+
+Do not create a GitHub remote or push it anywhere. The human operator owns remote creation, `git remote add`, push, and deployment.
 
 If a Discovery Console payload specifies `refinement.mode = "refine-existing-demo"`, use `REFINEMENT_CONTRACT.md` instead.
 
@@ -223,9 +225,42 @@ For production, add a Cloudflare-compatible provider or endpoint only when reque
 
 Document environment variables and never commit credentials.
 
-## 13. Deployment
+## 13. Deployment handoff
 
-Default deployment target: **Cloudflare Pages**.
+Default deployment target: **Cloudflare Pages**, but deployment itself is OUT OF SCOPE for the harness.
+
+The agent prepares a local repository for manual human handoff.
+
+The normal boundary is:
+1. local repo exists
+2. source/research/README are complete
+3. local build passes
+4. stop
+
+The human operator then:
+1. creates/selects the GitHub remote
+2. adds the remote
+3. pushes the repo
+4. connects/deploys it to Cloudflare
+
+Do not:
+- create a GitHub repository
+- add or change git remotes
+- push to GitHub
+- use GitHub CLI to publish the target repo
+- open the Cloudflare dashboard
+- use browser automation for deployment
+- run `wrangler pages deploy`
+- run any Cloudflare deploy command
+- authenticate to Cloudflare
+- create/configure a Pages project
+- modify DNS
+- wait for or inspect a production deployment
+- spend tokens validating a live URL
+
+unless the user explicitly requests deployment or production verification in the current task.
+
+
 
 For Vite:
 - build command: `bun run build`
@@ -239,9 +274,11 @@ The generated README must document:
 - domain/DNS notes
 - asset/license notes
 
-If runtime/server behavior becomes necessary, evaluate Cloudflare Workers instead of introducing a non-Cloudflare hosting assumption.
+If runtime/server behavior becomes necessary, document the Cloudflare Workers requirement for the human operator instead of deploying it.
 
 Do not target Vercel by default.
+
+The normal completion point is: the local repository builds successfully and README contains the manual GitHub/Cloudflare handoff settings.
 
 ## 14. CI
 
@@ -307,7 +344,8 @@ Add tests only for meaningful behavior.
 
 ### Engineering
 - [ ] framework choice is minimal and justified
-- [ ] Cloudflare deployment documented
+- [ ] manual Cloudflare deployment settings documented
+- [ ] no deployment action was performed unless explicitly requested
 - [ ] `bun install --frozen-lockfile`
 - [ ] typecheck passes
 - [ ] build passes
@@ -317,11 +355,11 @@ Add tests only for meaningful behavior.
 ## 16. Handoff
 
 Report:
-- repository URL
-- branch/commit
+- local repository path/name
+- branch/commit if git was initialized locally
 - framework choice and why
 - research summary
 - what is factual vs inferred
 - temporary assets
-- Cloudflare deployment requirements
+- manual Cloudflare deployment settings
 - any remaining manual work
