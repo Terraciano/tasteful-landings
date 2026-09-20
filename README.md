@@ -119,6 +119,7 @@ The harness is optimized around current Codex behavior:
 - Astro is the static-complexity escape hatch
 - Next.js is an exception, not the baseline
 - Cloudflare Pages is the default deployment target
+- deployment itself is manual/human-owned; Codex stops at a build-ready repository
 
 Skills are loaded by phase instead of all at once.
 
@@ -173,6 +174,16 @@ The agent should research the current category before choosing a design directio
 ```
 
 ## Human work still required
+
+Deployment is deliberately manual.
+
+Codex should prepare the repository and document:
+- `bun run build`
+- output directory (`dist` for default Vite)
+- required environment variables
+- domain/DNS notes
+
+It must not open Cloudflare, run Wrangler, deploy, configure DNS, or verify production unless explicitly asked.
 
 The primary human input should be:
 - good discovery with the client
