@@ -1,8 +1,10 @@
 # Landing Repository Generation Contract
 
-This document defines what "generate a landing" means.
+This document defines **generate mode**: creating a landing when no existing demo repository is supplied.
 
 The output is a NEW repository, not a subfolder of this repository.
+
+If a Discovery Console payload specifies `refinement.mode = "refine-existing-demo"`, this contract is not the orchestration entrypoint. Use `REFINEMENT_CONTRACT.md` and refine the existing repository instead.
 
 ## 1. Required inputs
 
