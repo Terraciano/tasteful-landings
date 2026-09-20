@@ -1,18 +1,24 @@
-# <Industry> — Reference Framework
+# <Industry> — Optional Human References
 
-References are pattern sources, not pages to copy.
+Human-curated references are optional.
 
-## Reference roles
+The default workflow is:
+- `RESEARCH_PROTOCOL.md`
+- `industries/<industry>/RESEARCH_PLAYBOOK.md`
 
-Create 3-5 distinct buckets, for example:
-- product presentation
-- inventory/catalog UX
-- editorial/art direction
-- trust/credibility
-- conversion
+The agent should discover current project-specific references itself.
 
-## Approved reference format
+Use this file only to pin a reference the human/client explicitly wants considered.
 
+## Priority rule
+
+Pinned references must be inspected during research.
+
+They are evidence, not instructions to copy.
+
+## Pinned reference format
+
+```md
 ### <Brand / page>
 
 URL:
@@ -24,18 +30,17 @@ Use for:
 Do not copy:
 - ...
 
-Observed patterns:
+Reason this reference matters:
 - ...
-
-Why it fits:
-- ...
-
-## Acceptance rule
-
-Each accepted reference must teach a useful, industry-relevant pattern.
-
-Looking expensive is not enough.
+```
 
 ## Prohibited copying
 
-Never reproduce logos, proprietary copy, trademarked assets, or a distinctive composition wholesale.
+Never reproduce:
+- logos
+- proprietary copy
+- trademarked assets
+- distinctive compositions wholesale
+- proprietary photography
+
+Use patterns, not brand identity.
