@@ -1,10 +1,10 @@
 # Repository purpose
 
-This repository is a control plane for generating production-ready landing-page repositories for high-ticket and luxury industries.
+This repository is a control plane for creating and refining production-ready landing pages for high-ticket and luxury industries.
 
-It is NOT where generated landing pages live.
+It is NOT where client landing pages live.
 
-A generated landing must be created as its own repository and be independently deployable.
+In generate mode, create a new independently deployable repository. In refinement mode, modify the existing demo repository identified by discovery.
 
 ## Operating modes
 
@@ -101,11 +101,15 @@ Do not implement before `DESIGN_DIRECTION.md` exists. In refinement mode, `DEMO_
 ### Phase 2 — Design and implementation
 
 Read:
-1. generated `research/DESIGN_DIRECTION.md`
+1. target repo `research/DESIGN_DIRECTION.md`
 2. `.agents/skills/design-taste-frontend/SKILL.md`
-3. `GENERATION_CONTRACT.md`
+3. the active mode contract:
+   - generate: `GENERATION_CONTRACT.md`
+   - refinement: `REFINEMENT_CONTRACT.md`
 
-Implement using the smallest architecture that satisfies the brief.
+In refinement mode, also read `research/DEMO_AUDIT.md` and `research/REFINEMENT_PLAN.md`.
+
+Implement using the smallest architecture/change set that satisfies the brief.
 
 ### Phase 3 — Copy
 
@@ -120,7 +124,7 @@ Write/review final page copy.
 ### Phase 4 — Release
 
 Read:
-1. `GENERATION_CONTRACT.md`
+1. the active mode contract
 2. `.agents/skills/seo-audit/SKILL.md`
 3. implemented site
 
@@ -204,4 +208,4 @@ It must:
 - work from small mobile through large desktop
 - have complete metadata and crawl/index primitives
 - pass the release checklist
-- be independently deployable
+- be deployable from the correct target repository
